@@ -1,0 +1,175 @@
+---
+title: "Hw03-hyeongcheol-park"
+author: "tom"
+date: '2017-09-30'
+output: html_document
+---
+####warming up- install packages
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(gapminder))
+```
+
+
+
+### 1.Let's get the maximum and minimum of GDP per capita for all continents.
+
+```{r}
+(q1<-gapminder %>% 
+  group_by(continent, year) %>% 
+  mutate(Maxgdp=max(gdpPercap),Mingdp=min(gdpPercap)) %>% 
+  select(continent, year, Maxgdp, Mingdp))
+```
+Max and Min of GDP/capita for each continent per each year!
+
+I will make a graph.
+
+```{r}
+q1 %>% 
+  ggplot(aes(color=continent))+facet_wrap(~ continent) +geom_point(aes(year,Maxgdp))+geom_point(aes(year,Mingdp))+scale_y_continuous("Max and Min")
+```
+  <br />We can easily see the difference between Min and Max of GDP/capita on each continent per year.
+
+ But it seems messy. so I will pick only in 20C and 20C and make a plot.
+ 
+```{r}
+q1 %>% 
+  filter(year %in% 1992:2017) %>% 
+  ggplot(aes(color=continent, group=continent)) +geom_point(aes(year,Maxgdp))+geom_point(aes(year,Mingdp))+scale_y_continuous("Max and Min")
+```
+ 
+
+### 2.Look at the spread of GDP per capita within the continents.
+
+```{r}
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(mean_gdp=mean(gdpPercap), sd_gdp=sd(gdpPercap))
+```
+It`s a brief summary for GDP/capita within the continents.
+
+
+
+
+
+```{r}
+gapminder %>% 
+  ggplot(aes(year, gdpPercap,group=country,color=continent))+facet_wrap( ~ continent) +geom_point()+geom_line()
+```
+ <br /> It shows the spread of GDP per capita within the continents
+```{r}
+ggplot(gapminder, aes(year, gdpPercap,
+                      colour=continent,group=country)) +
+    geom_point()+geom_line(alpha=0.2)
+```
+  <br />Or we can use this.
+
+
+```{r}
+gapminder %>%
+    ggplot(aes(x = continent, y = gdpPercap)) + geom_boxplot() + 
+  geom_jitter(position = position_jitter(width = 0.2, height = 0), alpha = 0.3, size = 2.5, colour = "green") +
+  labs(title = "GDP Per Capita vs Continent", x = "Continent", y = "GDP Per capita" )
+```
+ <br /> Maybe boxplot is better choice.
+ 
+```{r}
+gapminder %>%
+  ggplot(aes(x = gdpPercap, fill = continent)) +
+  geom_density (alpha = 0.4) +
+  labs (title = "GDP/capita for each continent", x = "GDP/capita", y = "Density")
+```
+ 
+ 
+### 3.Compute a trimmed mean of life expectancy for different years. 
+###How is life expectancy changing over time on different continents?
+```{r}
+(newlife<-gapminder %>% 
+  group_by(country) %>% 
+ mutate(newlife_exp=lifeExp*year[year==2007]/year))
+```
+ <br /> As time goes by, people tend to live longer. So what I did is lifeExp*year[year==2007]/year, which will correct the tendency a little bit.
+(Actually I did it by using gdp, but it scales lifeExp too much and I got data on which people at 1952 live longer than people in 2007! so it seems not proper way.)
+
+```{r}
+newlife %>% 
+  ggplot(aes(year,newlife_exp,color=gdpPercap,group=country))+facet_wrap(~ continent)+geom_point()+geom_line()
+```
+
+  <br />Still there is the tendency that comtemporary people live longer.
+
+
+
+
+
+
+### 4.Report the absolute and/or relative abundance of countries with low life expectancy over time by continent
+
+**I will use median lifeExp for each continent.**
+
+
+
+```{r}
+(belowage<-newlife %>% 
+  group_by(continent) %>% 
+  mutate(meanage=median(lifeExp)))
+```
+  <br />I got the average of lifeExp for every continent.
+
+```{r}
+(below<-belowage %>% 
+  filter(newlife_exp <= meanage))
+```
+
+<br />there are 792 countries whose lifeExp is below their continent's median, from 1952 to 2007.
+
+
+```{r}
+below %>% 
+  group_by(year, continent) %>% 
+  summarize(num=n())
+```
+
+<br />I got for each year, how many countries has lower lifeExp than median lifeExp for their continent!
+
+```{r}
+
+knitr::kable(below %>% 
+  group_by(year, continent) %>% 
+  summarize(num=n()))
+```
+
+
+
+
+<br />pretty chart.And for graph,
+
+```{r}
+below %>% 
+  group_by(year, continent) %>% 
+  summarize(num=n()) %>% 
+  ggplot(aes(year,num, colour=continent,group=continent))+geom_point()+geom_line()+labs(y="number of countries", title="how many countries people die early")
+```
+<br /> Early dying people seem to be getting smaller. 
+
+
+
+## 5.Find countries with interesting stories. Open-ended and, therefore, hard. Promising but unsuccessful attempts are encouraged. This will generate interesting questions to follow up on in class.
+
+Make up your own! Between the dplyr coverage in class and the list above, I think you get the idea.
+
+
+
+
+Notice which figures are easy/hard to make, which data formats make better inputs for plotting functions vs. for human-friendly tables.
+
+But I want to do more!
+Layout stretch goal: get table and figure side-by-side. This gist might get you started.
+
+Table stretch goal: there are some really nice fancy table helper packages. This tweet from @polesasunder will point you toward some R packages you may want to check out (pander, xtable, stargazer).
+
+Report your process
+You’re encouraged to reflect on what was hard/easy, problems you solved, helpful tutorials you read, etc. Give credit to your sources, whether it’s a blog post, a fellow student, an online tutorial, etc.
+
+
+As before, make a new issue and call it "Homework 03 is ready for grading".
