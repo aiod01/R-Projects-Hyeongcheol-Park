@@ -33,6 +33,11 @@ basic plotting was easy and fun! especially when I was analyzing gdp and populat
 2. [Googling the exact question](https://stackoverflow.com/questions/9109156/ggplot-combining-two-plots-from-different-data-frames)
 
 
+### Homework Assignments
+| Homework  | Completed Assignments |  
+|  :---: |  :---: |
+| 01 | [Here](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
+| 02| [Here](https://github.com/aiod01/STAT545-hw02-Hyeongcheol-Park) |ß
 
 
 
