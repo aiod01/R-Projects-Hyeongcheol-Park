@@ -37,7 +37,7 @@ basic plotting was easy and fun! especially when I was analyzing gdp and populat
 | Homework  | Completed Assignments |  
 |  :---: |  :---: |
 | 01 | [Here](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
-| 02| [Here](https://github.com/aiod01/STAT545-hw02-Hyeongcheol-Park) |ß
+| 02| [Here](https://github.com/aiod01/STAT545-hw02-Hyeongcheol-Park/blob/master/Exploring_Gapminder_for_HW2.md) |ß
 
 
 
