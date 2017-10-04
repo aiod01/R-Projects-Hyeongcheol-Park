@@ -44,7 +44,7 @@ q1 %>%
 ```{r}
 gapminder %>% 
   group_by(continent, year) %>% 
-  summarize(mean_gdp=mean(gdpPercap), sd_gdp=sd(gdpPercap))
+  summarize(mean_gdp=mean(gdpPercap), sd_gdp=sd(gdpPercap), min_gdp=min(gdpPercap),max_gdp=max(gdpPercap),median_gdp=median(gdpPercap))
 ```
 It`s a brief summary for GDP/capita within the continents.
 
@@ -79,7 +79,7 @@ gapminder %>%
   geom_density (alpha = 0.4) +
   labs (title = "GDP/capita for each continent", x = "GDP/capita", y = "Density")
 ```
- 
+  <br /> I am trying many things that I have learned from peer reviewing.
  
 ### 3.Compute a trimmed mean of life expectancy for different years. 
 ###How is life expectancy changing over time on different continents?
@@ -154,22 +154,27 @@ below %>%
 
 
 
-## 5.Find countries with interesting stories. Open-ended and, therefore, hard. Promising but unsuccessful attempts are encouraged. This will generate interesting questions to follow up on in class.
-
-Make up your own! Between the dplyr coverage in class and the list above, I think you get the idea.
-
-
-
-
-Notice which figures are easy/hard to make, which data formats make better inputs for plotting functions vs. for human-friendly tables.
-
-But I want to do more!
-Layout stretch goal: get table and figure side-by-side. This gist might get you started.
-
-Table stretch goal: there are some really nice fancy table helper packages. This tweet from @polesasunder will point you toward some R packages you may want to check out (pander, xtable, stargazer).
-
-Report your process
-You’re encouraged to reflect on what was hard/easy, problems you solved, helpful tutorials you read, etc. Give credit to your sources, whether it’s a blog post, a fellow student, an online tutorial, etc.
+## 5.Find countries with interesting stories.
+```{r}
+gapminder %>% 
+  mutate(diff=gdpPercap-lifeExp*10^2) %>% 
+  group_by(year) %>% 
+  summarize(max(diff))
+  
+  
+```
+I got Max GDP+ Min LifeExp from each country.
 
 
-As before, make a new issue and call it "Homework 03 is ready for grading".
+
+##6.Make up your own! Between the dplyr coverage in class and the list above, I think you get the idea.
+
+
+##To report my process.
+
+ The most difficult thing was that I would like to make a chart of "how many countries people die early" without overlapping same years five times for each continent. I tried to do it but I gave up to find the solution. 
+  And It seems that I am getting use to using %>% function. It was not fully free for me to analize whatever I want to try, but I think I am getting better for that.
+  However, honestly, I still don't know well how to decorate plots  changing axis, scale, and so on. So I skipped many of that in my assignment3.
+  Helpful tutorial was absolutely the lecture note, [here](https://stat545.com/cm007-notes_and_exercises.html). And I searched some [blog](http://www.dodomira.com/2016/03/18/ggplot2-기초/), which was more readable for me, while I don't think it will be helpful to others.
+
+
