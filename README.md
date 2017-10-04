@@ -1,10 +1,10 @@
 # STAT545-hw02-Hyeongcheol-Park
 
-*The apparition of these faces in the crowd;*
 
-*Petals on a wet, black bough*
+Assignment 3 is [here](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)
 
-### Homework Assignments
+
+
 | Homework  | Completed Assignments |  
 |  :---: |  :---: |  :---: |
 | 01 | [Here](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
