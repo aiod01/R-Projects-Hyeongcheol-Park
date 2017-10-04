@@ -1,0 +1,181 @@
+---
+title: "hw02_exploit_gapminder"
+author: "tom"
+date: '2017-09-24'
+output: github_document
+---
+###Warming up
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+***
+
+#Smell test the data
+## Explore the gapminder object
+```{r}
+head(gapminder)
+```
+Glipse of data.
+
+```{r}
+str(gapminder)
+```
+ It is a data.frame, and also a tlbble. Country, Continent is factor(qualitative), year, pop is integer and lifeExp, gdpPercap is number(quantitative).
+  
+```{r}
+typeof(gapminder$pop)
+```
+we can also use typeof function to check type of variables.
+```{r}
+class(gapminder)
+```
+Classes are ‘tbl_df’, ‘tbl’ and 'data.frame', but we can check it even with str( ) function.
+  
+```{r}
+ncol(gapminder)
+nrow(gapminder)
+```
+6 variables/colums, 1704 observations/rows.
+
+```{r}
+dim(gapminder)
+```
+*this also works. same result!*
+
+#Explore individual variables
+
+**I will search for lifeExp, population, continent and country.**
+
+```{r}
+summary(gapminder$lifeExp)
+```
+- minimum value is 23, maximum 82 years old. 
+
+```{r}
+x <- gapminder$lifeExp
+hist(x, xlab="age" )
+```
+
+
+Histogram of how old people live in whole history of mankind. People typically live till 70~75 years old.
+
+```{r}
+summary(gapminder$pop)
+```
+- Variation of Population is huge. 
+
+
+
+```{r}
+y<- gapminder $ country
+n_distinct(y)
+```
+we have 142 countries.
+
+
+```{r}
+levels(gapminder$continent)
+```
+from 5 continents.
+
+```{r}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(how_many_contries_in_there= n())
+```
+while each continent has different number of countries.
+
+```{r}
+gapminder %>% 
+  count(continent)
+```
+we have many ways to do so.
+
+#Explore various plot types
+
+```{r}
+
+ggplot(gapminder,aes(x=year, y=lifeExp, color=continent))+geom_point(alpha=0.4)
+```
+We can see people live longer as time goes by, and there is a consistent tendency between continents.
+
+
+```{r}
+
+ggplot(gapminder,aes(x=year, y=gdpPercap, color=continent))+geom_point(alpha=0.4)
+```
+GDP seems to increase, especially for Eurpoean countries.
+
+```{r}
+
+gap2<-gapminder %>% 
+  group_by(continent, year) %>% 
+  mutate(pop1 = pop*0.001) %>% 
+  summarise(population=sum(pop1))
+gap2
+ggplot(gap2,aes(x=year, y=population, color=continent))+geom_point(alpha=0.4)
+```
+As time goes by, the population of Asia is going high, while in Oceania people don't have a baby.
+
+
+
+```{r}
+gap1<-gapminder %>% 
+  filter(year>2000) 
+  
+ggplot(gap1,aes(x=continent, y=lifeExp,color=continent))+geom_boxplot()
+```
+Box plof of lifeExp by continent.
+In this 21C, people's life Expectancies vary a lot by continents.
+
+```{r}
+gap1<-gapminder %>% 
+  filter(year>2000) 
+  
+ggplot(gap1,aes(x=continent, y=gdpPercap,color=continent))+geom_boxplot()
+```
+Box plof of GDP/person by continent.
+In this 21C, people's life Expectancies vary a lot by continents.
+It is a pretty plot for unpretty capital polarization.
+
+```{r}
+Kor<-gapminder %>%
+  filter(country=="Korea, Rep.")
+
+gap_butkor<-gapminder %>% 
+  filter(country!="Korea, Rep.") %>% 
+  group_by(year) %>% 
+  summarise(pop=mean(pop))
+  gap_butkor
+```
+```{r}
+ggplot()+geom_line(data=Kor,aes(x=year,y=pop), color="Green")+geom_line(data=gap_butkor,aes(x=year, y=pop),color="Blue",)+ggtitle("Population ~ year between Korea and the others", xlab("Green for kor/ Blue for the others"))
+
+```
+Korea's population increases as like average. 
+```{r}
+gdp_butkor<-gapminder %>% 
+  filter(country!="Korea, Rep.") %>% 
+  group_by(year) %>% 
+  summarise(gdpPercap=mean(gdpPercap))
+  
+ggplot()+geom_line(data=Kor, aes(x=year,y=gdpPercap), color="Green")+geom_line(data=gdp_butkor,aes(x=year, y=gdpPercap),color="Blue")+ggtitle("Gdp ~ year between Korea and the others",xlab("Green for kor/ Blue for the others"))
+
+
+```
+Korea's GDP increases exponentially.
+
+## I want to do more!
+*For people who want to take things further.*
+*Evaluate this code and describe the result. Presumably the analyst’s intent was to get the data for Rwanda and Afghanistan. Did they succeed? Why or why not? If not, what is the correct way to do this?*
+```{r}
+filter(gapminder, country == c("Rwanda", "Afghanistan"))
+```
+It only has half of the data because of the logical sentence.  a == b	a is equal to b. So if we use ==, then as the value of country can only have one value, it will ignore the other value.
+
+```{r}
+filter(gapminder, country %in% c("Rwanda", "Afghanistan"))
+```
+a %in% b means	a is an element in b. So, whenever country is an element in a row, the row is counted. So, we can get all the data from the original.
