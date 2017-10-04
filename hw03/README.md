@@ -19,5 +19,6 @@
   
   
   Helpful tutorial was absolutely the lecture note, [here](https://stat545.com/cm007-notes_and_exercises.html). And I searched some [blog](http://www.dodomira.com/2016/03/18/ggplot2-기초/), which was more readable for me, while I don't think it will be helpful to others.
+my peer review was helpful! here it comes HeatherSummer's homework2 [HeatherSummers](https://github.com/heathersummers/STAT545-hw-Summers-Heather/blob/master/hw02/hw02.md)
 
 

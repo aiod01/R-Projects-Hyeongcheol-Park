@@ -63,6 +63,8 @@ basic plotting was easy and fun! especially when I was analyzing gdp and populat
 
 2. [Googling the exact question](https://stackoverflow.com/questions/9109156/ggplot-combining-two-plots-from-different-data-frames)
 
+3.my peer review was helpful! here it comes HeatherSummer's homework2 [HeatherSummers](https://github.com/heathersummers/STAT545-hw-Summers-Heather/blob/master/hw02/hw02.md)
+
 
 
 
