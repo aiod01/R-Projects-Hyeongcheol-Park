@@ -6,6 +6,7 @@ output: github_document
 ---
 
 *warminig up- set up the environment*
+
 ```{r}
 library(tidyverse)
 library(gapminder)
