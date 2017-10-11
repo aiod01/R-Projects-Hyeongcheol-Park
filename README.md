@@ -22,8 +22,11 @@ I figured out I need to refer r markdown cheat sheet still.
  And there was some error on my r codes. And because of my bad examples of complementary dataframe for gapminder, I need to make 2 tables.
  
   gather and spread was easy to follow.
+  useful links;
+  [about .rmd](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+  [about R](https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/unique)
   
-  I put links that I looked at on my .md file.
+  I put links that I looked at on my .md file, too.
 
 
 **About HW03**
