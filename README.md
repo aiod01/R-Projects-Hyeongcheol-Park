@@ -1,7 +1,7 @@
 # STAT545-hw02-Hyeongcheol-Park
 
 
-Assignment 3 is [here](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)
+Assignment 4 is [here](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md)
 
 
 
@@ -9,6 +9,22 @@ Assignment 3 is [here](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blo
  [HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
 [HW02](https://github.com/aiod01/STAT545-hw02-Hyeongcheol-Park/blob/master/Exploring_Gapminder_for_HW2.md) |
  [HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)|
+ [HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md)
+
+
+**About HW04**
+
+##To report my process.
+
+It was hard, there was some Rmd error that makes me feel dizzy.
+I figured out I need to refer r markdown cheat sheet still.
+
+ And there was some error on my r codes. And because of my bad examples of complementary dataframe for gapminder, I need to make 2 tables.
+ 
+  gather and spread was easy to follow.
+  
+  I put links that I looked at on my .md file.
+
 
 **About HW03**
 
