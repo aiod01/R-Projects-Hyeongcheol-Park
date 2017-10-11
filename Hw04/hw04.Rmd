@@ -4,7 +4,7 @@ author: "tom"
 date: '2017-10-06'
 output: github_document
 ---
-------------------
+
 *warminig up- set up the environment*
 ```{r}
 library(tidyverse)
@@ -17,9 +17,12 @@ library(gapminder)
 
 *Make a tibble with one row per year and columns for life expectancy for two or more countries.
 *Use knitr::kable() to make this table look pretty in your rendered homework.
-*Take advantage of this new data shape to scatterplot life expectancy for one country against that of another.
-------
-I choosed Kor, China, and Japan to compare.
+
+*Take advantage of this new data shape to scatterplot life expectancy for one country against that of another.*
+
+***
+>I choosed Kor, China, and Japan to compare.
+
 ```{r}
  three<-gapminder %>% 
   select(year, country, lifeExp) %>% 
@@ -71,13 +74,19 @@ three %>%
 ###Activity #3
 
 Compute some measure of life expectancy (mean? median? min? max?) for all possible combinations of continent and year.
+
+>I choosed mean.
+
+
 ```{r}
 (gapminder %>% 
   group_by(year,continent) %>% 
   summarise(meanlife=mean(lifeExp)) %>% 
   knitr::kable())
 ```
-<br />
+
+
+<br/>
 it's easy.
 
 Reshape that to have one row per year and one variable for each continent. 
@@ -87,20 +96,27 @@ knitr::kable(gapminder %>%
   summarise(meanlife=mean(lifeExp)) %>% 
   spread(key=continent, value=meanlife))
 ```
-<br />spread ftn is amazing...
 
-*Or the other way around: one row per continent and one variable per year.
+
+
+<br/>spread ftn is amazing...
+
+*Or the other way around: one row per continent and one variable per year.*
+
 ```{r}
 knitr::kable(gapminder %>% 
   group_by(year,continent) %>% 
   summarise(meanlife=mean(lifeExp)) %>% 
   spread(key=year, value=meanlife))
 ```
-<br /> untidy by spread, pretty by kable.
+
+
+<br/> untidy by spread, pretty by kable.
 
 Is there a plot that is easier to make with the data in this shape versis the usual form? If so (or you think so), try it! Reflect.
 
  In my opinion, as only one variable can be on one axis, x or y, the untidy plot has some disadvantage when we plan to use geom_line or geom_point with whole data frame. Then the advantage of the dataframe with many variable, should be when we want to compare in a specific way- such as, comparing lifeExp of 1952 with that of 2002 by each continent, as we did in Activity 2. 
+ 
 ```{r}
 untidy<-gapminder %>% 
   group_by(year,continent) %>% 
@@ -109,10 +125,13 @@ untidy<-gapminder %>%
 untidy %>% 
   ggplot(aes(1952, 2002, color=continent))+geom_point()
 ```
-<br \> No..... I didn't mean it.
+
+
+<br\> No..... I didn't mean it.
 
 well I guess, scatter plot, or histogram would be fitter for this data frame.
 scattor plot 
+
 ```{r}
 untidy <- gapminder %>% 
   group_by(year,continent) %>% 
@@ -124,7 +143,10 @@ untidy <- gapminder %>%
     ggplot(aes(Africa,Americas,colour=year))+geom_point()+theme_bw()+labs(title="scatter plot between Africa and Americas")
 
 ```
-<br \> Then I will try this plot with original dataframe.
+
+
+<br\> Then I will try this plot with original dataframe.
+
 
 ```{r}
 gapminder %>% 
@@ -133,19 +155,23 @@ gapminder %>%
   filter(continent %in% c("Africa", "Americas")) %>% 
 ggplot(aes(x=year,y= meanlife, color=continent))+geom_point()
 ```
-<br \> I don't know how to make scatter plot with original data and this is my best that I can do. So for scatterplot, untidy data might be better.
+
+
+<br\> I don't know how to make scatter plot with original data and this is my best that I can do. So for scatterplot, untidy data might be better.
 
 p.s. I figured out that histogram is not proper for this data. Histogram is used for frequency, so this data is not proper to use that.
 
 
 
 
--------------
+***
 ## Join
 
 ###Activity #1
 
 Create a second data frame, complementary to Gapminder.
+
+
 ```{r}
 country<-c('Korea, Rep.', 'Japan', 'China', 'Austria')
 capital<-c("Seoul","Tyoko",NA,NA)
@@ -155,7 +181,9 @@ compl<-data_frame(country, capital, language, messenger)
 compl %>% 
   knitr::kable()
 ```
-<br />
+
+
+<br/>
 
 
 ```{r}
@@ -166,7 +194,10 @@ conti<-data_frame(continent,hemishpere,summer)
 conti
 knitr::kable(conti)
 ```
-<br />
+
+
+
+<br/>
 I made new dataframes.
 
  Join this with (part of) Gapminder using a dplyr join function and make some observations about the process and result. Explore the different types of joins. 
@@ -179,7 +210,10 @@ I made new dataframes.
 inner_join(gapminder, compl) %>% 
   knitr::kable()
 ```
-<br />
+
+
+
+<br/>
 
  I got this message; Joining, by = "country"
 Column `country` joining factor and character vector, coercing into character vector
@@ -190,7 +224,10 @@ str(gapminder)
 ```{r}
 str(compl)
 ```
-<br />
+
+
+
+<br/>
  I realized that in gapminder, country is a Factor, which means that it is a categorical variable, consisting of differernt levels. Meanwhile, in copl, contry is a character vector. 
  
 ```{r}
@@ -204,17 +241,21 @@ knitr::kable(inner_join(gapminder, compl) %>%
  
  
  
- <br />
+<br/>
  It is a pretty version of new table with new info from copl table, removing data related with year. 
  
  
 ####Right Join 
 Next, left, right join!
+
+
 ```{r}
 left_join(compl,gapminder) %>% 
     knitr::kable()
 ```
-<br />
+
+
+<br/>
 I could see the difference between variable order.
 Sadly, number of rows and colums are the same with inner join. It was not a good example because there was no "NA" on country name, leading this result!
 
@@ -225,7 +266,7 @@ left_join(compl,gapminder) %>%
   knitr::kable()
 ```
 
-<br />
+<br/>
 same result with inner, the variable order is the only difference :(
 
 
@@ -235,12 +276,16 @@ For makeing difference, I will try with conti(continent) dataframe.
 gapminder %>% 
   inner_join(conti)
 ```
-<br />
+
+
+<br/>
 ```{r}
 gapminder %>% 
   right_join(conti)
 ```
-<br />
+
+
+<br/>
 So inner join- 1404 rows, while right join 1405 rows.
 
  This is not what I expected. I wanted to make a short-row dataframe as what I did on previous example with compl dataframe without filter(year==1952). Then it's time to try semi, anti join.
@@ -254,13 +299,13 @@ conti %>%
     knitr::kable()
 ```
 
-<br />
+<br/>
  This is it. semi_join keeps all obervations on conti that have a match in gapminder.
 ```{r}
 conti
 ```
  
- <br />
+<br/>
   That is to say, it deleted NA continent because gapminder doesn't have NA.
  
  Anti join is,
@@ -270,7 +315,7 @@ conti %>%
     knitr::kable()
 ```
 
-<br />
+<br/>
  I deliberately had deleted one of continent, and that was the only one that cannot match its pair on gapminder because there is no NA on continent variable on gapminder.
  So only this survivied.
  
@@ -284,7 +329,7 @@ conti %>%
   
 ```
 
-<br />
+<br/>
  This is what I wanted to show!
  I used unique() funciton from google [search](http://lightblog.tistory.com/18).
  
@@ -300,21 +345,25 @@ gapminder %>%
     knitr::kable()
 ```
 
-<br />
+<br/>
 While previous one doesn't have any Americas continent, it has all becuase it is full join.
  
  
 
 
 ###Activity #3
-
 Explore the base function merge(), which also does joins. Compare and contrast with dplyr joins.
+
 ```{r}
 merge(compl, gapminder) %>% 
     knitr::kable()
 ```
-<br />
+
+
+
+<br/>   
 Let's compare merge and inner join
+
 ```{r}
 
 inner_join(compl,gapminder) %>% 
@@ -322,17 +371,22 @@ inner_join(compl,gapminder) %>%
 ```
 
 
-<br />
+
+
+<br/>  
  Merge do the same thing with inner join. Same row numbers.
  
  
 Explore the base function match(), which is related to joins and merges, but is really more of a “table lookup”. Compare and contrast with a true join/merge.
 
+
 ```{r}
 match( gapminder, compl) %>% 
     knitr::kable()
 ```
-<br />
+
+
+<br/>  
 I got all NAs.
 So, not a good example to explore match.
 
@@ -340,13 +394,16 @@ So, not a good example to explore match.
 match(compl$country, gapminder$country) %>% 
     knitr::kable()
 ```
+
+
+
 ```{r}
 compl %>% 
     knitr::kable()
 ```
 
 
-<br />
+<br/>
 match returns a vector of the positions of (first) matches of its first argument in its second. So, 
 Korea's first position in gapminder is 841,
 Japan's first position in gapminder is 793,
