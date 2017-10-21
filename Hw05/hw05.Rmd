@@ -2,7 +2,7 @@
 title: "Hw05 545"
 author: "tom"
 date: '2017-10-19'
-output: html_document
+output: github_document
 ---
 My assignment starts with Gapminder version.
 
