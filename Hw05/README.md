@@ -13,7 +13,10 @@
   As a non-native Eng listener and reader, I cannot say that the assignment is easy. 
 I read all the materials on stat545 webpage by myself and tried everything which took many hours. Sometimes it was hard to understand what it says.
 When I got stuck, I go all around near my office and grap anyone and asked. The homework was time consuming but very worthy.
- 
+
+One of my peer reviewee, Heather's Github gave me lots of help.
+
+
   I am glad that I finished this assignment on time. 
 
 
