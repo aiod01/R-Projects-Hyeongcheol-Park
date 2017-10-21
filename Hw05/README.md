@@ -2,9 +2,9 @@
 
 
 ### Useful links.
-[stat545](https://stat545.com/cm007-notes_and_exercises.html).
-[blog_for_ggplot](http://www.dodomira.com/2016/03/18/ggplot2-기초/)
-[about .rmd](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+[stat545](https://stat545.com/cm007-notes_and_exercises.html).|
+[blog_for_ggplot](http://www.dodomira.com/2016/03/18/ggplot2-기초/)|
+[about .rmd](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)|
 [about R](https://www.rdocumentation.org/packages/base/versions/3.4.1/topics/unique)
   
 
@@ -16,7 +16,6 @@ When I got stuck, I go all around near my office and grap anyone and asked. The 
  
   I am glad that I finished this assignment on time. 
 
- 굳.
 
 
 
