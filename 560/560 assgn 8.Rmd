@@ -98,6 +98,7 @@ a<-sqrt(a_square)
 
 qnst <- function(p,mu,sigma,nu) return(mu + sigma*qt(p,df=nu))
 
+
 qnst(0.75,b,a,df)
 ```
 
