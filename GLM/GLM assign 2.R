@@ -121,3 +121,5 @@ summary(fit4_poi_quasi)#Dispersion parameter for quasipoisson family taken to be
 summary(fit4)
 summary(fit4_bin_quasi)
 summary(fit4_poi_quasi)
+
+cor(Ex1, X)
