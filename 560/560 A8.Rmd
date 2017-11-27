@@ -1,0 +1,46 @@
+---
+title: "560 A8"
+author: "tom"
+date: '2017-11-25'
+output: html_document
+---
+```{r}
+install.packages("smoothmest")
+library(smoothmest)
+```
+
+
+
+```{r}
+n=numeric()
+y<-numeric()
+u<-(2*exp(1)/pi)^(1/2)
+for (i in 1:1000) {
+  
+x <- rdoublex(1,mu=0,lambda=1)
+f_0_x<-ddoublex(x)
+f_x<-dnorm(x)
+pi_x<-f_x/(f_0_x*u)
+
+uni<-runif(1,0,1)
+tmp <- 1
+while( uni>pi_x){
+x <- rdoublex(1,mu=0,lambda=1)
+f_0_x<-ddoublex(x)
+f_x<-dnorm(x)
+pi_x<-f_x/(f_0_x*u)
+uni<-runif(1,0,1)
+tmp <- 1+tmp
+}
+y[i] <- x  
+n[i] <- tmp
+}
+
+hist(y)
+(num_of_runs <- sum(n))
+qqnorm(Y)
+qqline(Y)
+```
+
+
+

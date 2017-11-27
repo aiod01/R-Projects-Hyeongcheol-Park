@@ -18,6 +18,7 @@ _ ANOVA ensured smaller model is more adequate with p-value 0.9021.
 - I checked scatter Plot Matrix and correlation matrix. I deleted insignificant covariate U1 which has the Multicollinearity with U2.(fit4)
 - ANOVA ensured smallest model(fit4) is better than fit3.
 - Residual plot implies nonconstant variance. I conduct log transformation on Y.
+- It seems there is no influence point by checking cooks distance.
 
 ```{r}
 crime.dat <- read.table("~/Library/Mobile Documents/com~apple~CloudDocs/crime.dat.txt", header = T)
@@ -50,7 +51,7 @@ R1<-as.numeric(R>105).
 - Comparing AIC by drop1 function, I droped U1 which increase smallest AIC and cure multicollinearity between U1 and U2. And this model converge.(fit3_bin) 
 - I checked dispersion parameter by fitting quasibinomial model, and dispersion parameter for quasi model is 0.4. (fit4_bin_quasi)
 - As dispersion parameter is not near 1, it turns out that binomial model not fit well, so we use quasibinomial model.
-
+- It seems there some influence points by checking cooks distance. As there are more than 4, we regard those as parts of data.
 
 
 
@@ -167,6 +168,8 @@ plot(fitted(fit4), resid(fit4), main="Residual Plot",
 abline(a=0,b=0)
 qqnorm(resid(fit4))
 
+
+
 # Log transformation to stabilize nonconstant variance.
 fit4<-lm(log(R) ~ Age + Ed + Ex0  + U2 + X, data=crime.dat)
 summary(fit4)
@@ -174,6 +177,10 @@ plot(fitted(fit4), resid(fit4), main="Residual Plot",
      xlab="fitted value", ylab="residuals") 
 abline(a=0,b=0)
 qqnorm(resid(fit4))
+
+# It seems there is no influence point by checking cooks distance.
+cooks.distance(fit4)
+which(cooks.distance(fit4)>1)
 
 ##################################Binomial Logit model.##################
 
@@ -195,12 +202,16 @@ summary(fit3_bin)
 
 #Comparing AIC-> it seems if we drop one more covariate, AIC increase too much.
 drop1(fit3_bin)# we keep this model.
-
+which(cooks.distance(fit3_bin)>1)
 #we check the dispersion parameter, By using quasibinomial.
 fit4_bin_quasi<-glm(R1 ~ Age + Ex1 + LF + NW + U2 + X,family=quasibinomial,data=crime.dat)
 summary(fit4_bin_quasi)#As quasibinimial's dispersion parameter is 0.4, we should use quasibinomial.
 # we cannot say the assumptions for logit model hold well.
 
+# It seems there some influence points by checking cooks distance. As there are more than 4, we regard those as parts of data.
+cooks.distance(fit4_bin_quasi)
+which(cooks.distance(fit4_bin_quasi)>1)
+#
 ##################Poisson##################
 # Change response variable.
 R2<-round(R,digits=0)
@@ -239,6 +250,10 @@ qchisq(0.95,1)  # qualtile of chisq is 3.84. 14.8>3.84. So we reject the null. w
 fit4_poi_quasi<-glm(R2 ~ Age + Ed + Ex0+ U2+W + X,family=quasipoisson,data=crime.dat)
 summary(fit4_poi_quasi)#Dispersion parameter for quasipoisson family taken to be 5.304443. 
 #We cannot say that the assumptions for Poisson model hold well.
+
+# It seems there is no influence point by checking cooks distance.
+cooks.distance(fit4_poi_quasi)
+which(cooks.distance(fit4_poi_quasi)>1)
 
 #For linear model R ~ Age + Ed + Ex0  + U2 + X,
 #QuasibinomialR1 ~ Age + Ex1 + LF + NW + U2 + X,
