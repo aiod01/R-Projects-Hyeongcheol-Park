@@ -1,13 +1,16 @@
 # STAT545-Hyeongcheol-Park
 
-#Homework links!!
+#R Practice links
 
-[HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
-[HW02](https://github.com/aiod01/STAT545-hw02-Hyeongcheol-Park/blob/master/Exploring_Gapminder_for_HW2.md) |
-[HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)|
-[HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md) |
-[HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/tree/master/Hw05)
+[Getting familiar with Github-HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park) | 
+[ggplot practice-HW02](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw02/Exploring_Gapminder_for_HW2.md) |
+[ggplot practice with graphs-HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)|
+[ggplot and join function-HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md) |
+[Factor management and etc-HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/tree/master/Hw05)
 
+[regression, logit, poisson model practice](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Generalized%20Linear%20Model/GLM_A2.pdf)
+[GLM: wine data analysis](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Generalized%20Linear%20Model/Wine_Tastes_Analyzing_by_GLM_Methods.pdf)
+[sampling method: rejective, Gibbler, MCMC](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Statistical%20Inference/560_A8.pdf)
 
 ##Welcome everyone
 
