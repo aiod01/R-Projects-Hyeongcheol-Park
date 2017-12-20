@@ -10,7 +10,7 @@
   
 [ggplot and join function-HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md) 
   
-[Factor management and etc-HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/tree/master/Hw05)
+[Factor management and etc-HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw05/hw05.md)
   
 [regression, logit, poisson model practice](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Generalized%20Linear%20Model/GLM_A2.pdf)
   
