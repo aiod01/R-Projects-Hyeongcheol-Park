@@ -1,4 +1,4 @@
-# STAT545-hw02-Hyeongcheol-Park
+# STAT545-Hyeongcheol-Park
 
 #Homework links!!
 
