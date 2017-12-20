@@ -47,7 +47,7 @@ abstract: "GLM model can be used to obtain some insights of the taste preference
 | quality | 3 | 8 | 5.6 | 6 |
 
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 wine <- read.csv(file="/Users/hyeongcheolpark/Library/Mobile Documents/com~apple~CloudDocs/UBC/2017-fall/538A GLM/winequality-red.csv", header=TRUE, sep=";")
 hist(wine$quality, freq=FALSE)
 
@@ -186,14 +186,14 @@ Signif. codes:  0 ‘\***’ 0.001 ‘\**’ 0.01 ‘\*’ 0.05 ‘.’ 0.1 ‘ 
  
  Comparing two logit models, it seems that the smaller model with sample size 279, which discarded some samples could be better model. This is because quality 5 and 6 has no huge difference, and the sample size 279 seems to be still big enough.
  
-##6. Conclusion.
+##5. Conclusion.
  
 
  In this project, we performed generalized linear modeling(glm) to the wine data. The tastes of the wines is well known of their diversity based on the ingredients of the wines. In order to keep pace with the growing of wine produce regions and of the wine market, we concluded that glm can play its role in matching the proper wine products and its adequate market. As the appetite propensity could be analyzed by this method, we can develop the wine market more efficiently less depending on the traditional way.
 
  There are some limitations about this analysis. The origial paper, by Cortez et al.(2009) mentioned in his paper that support vector machine was a better model than GLM model. The GLM model can conduct its role quite well, but it might not be the best model to do our task. Secondly, the model's has some hidden problem. When we look at the box plot between alcohol and quality, there might be an quadratic relation, not a linear one. That may cause some lack of inference. Moreover, in the other markets, people may like different tastes, which depend on different ingredients of the wine. That means that the model is not valid for predicting other market's preferences.
  
-##7.Appendix
+##6.Appendix
 
 ```{r}
 # #read dataset.
