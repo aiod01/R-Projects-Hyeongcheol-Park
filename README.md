@@ -1,8 +1,8 @@
-# STAT545-Hyeongcheol-Park
 
-#R Practice links
 
-[Getting familiar with Github-HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park)
+##R Practice links
+
+
   
 [ggplot practice-HW02](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw02/Exploring_Gapminder_for_HW2.md) 
   
@@ -18,6 +18,8 @@
   
 [sampling method: rejective, Gibbler, MCMC](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Statistical%20Inference/560_A8.pdf)
   
+[Getting familiar with Github-HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park)
+
 
 ##Welcome everyone
 
