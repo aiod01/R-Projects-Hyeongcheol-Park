@@ -1,0 +1,88 @@
+---
+title: "561A3"
+author: "tom"
+date: '2018-01-27'
+output: pdf_document
+---
+#2.(a)
+```{r}
+x <- seq(3,10,0.0001)
+y <- pchisq((50.76/x),df=10,lower.tail = FALSE)
+plot(x,y,type="l")
+```
+
+
+As theta goes to 10, the power gets larger.
+
+
+#2.(b)
+
+```{r}
+##calculate the values
+b_3.5 <- pchisq((50.76/3.5),df=10,lower.tail = FALSE)
+b_5 <- pchisq((50.76/5),df=10,lower.tail = FALSE)
+#simulation
+
+b1 <- sqrt(3.5)
+b2 <- sqrt(5)
+crtr_1 <- 50.76/3.5
+crtr_2 <- 50.76/5
+count_3.5 <- rep(NA, 10000)
+count_5 <- rep(NA, 10000)
+for (i in 1:10000) {
+  x_3.5 <- rnorm(10, mean=1, sd=b1)
+  x_5 <- rnorm(10, mean=1, sd=b2)
+  t_obs_3.5 <- sum((x_3.5-1)^2)/3.5
+  t_obs_5 <- sum((x_5-1)^2)/5
+  if (t_obs_3.5>crtr_1) {
+    count_3.5[i] <- 1
+  }
+  else {
+    count_3.5[i] <- 0
+  }
+  if (t_obs_5>crtr_2) {
+    count_5[i] <- 1
+  }
+
+  else {
+    count_5[i] <- 0
+  }
+  
+}
+print("The exact value for beta(3.5)is ")
+b_3.5
+print("The simulated value for beta(3.5)is ")
+sum(count_3.5)/10000
+print("The exact value for beta(5)is ")
+b_5
+print("The simulated value for beta(3.5)is ")
+sum(count_5)/10000
+```
+
+So they are pretty similar.
+
+
+
+#3
+```{r}
+pgamma(11.94, shape=10, rate = 1,lower.tail = T, log.p = FALSE)
+```
+
+#4
+```{r}
+rr <- (0.05)^(1/40)
+count <- rep(NA,10000)
+for (i in 1:10000) {
+x <- runif(20,0,1)
+y <- sqrt(x)
+if (max(y)<rr) {
+  count[i] <- 1
+}
+else {
+  count[i] <- 0
+}
+}
+sum(count)/10000
+```
+
+It is pretty close to 0.05
