@@ -17,7 +17,9 @@
   
 [sampling method: rejective, Gibbler, MCMC](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Statistical%20Inference/560_A8.pdf)
   
-[Getting familiar with Github-HW01](https://github.com/aiod01/STAT545-hw01-Hyeongcheol-Park)
+
+[Statistical report sample with simulation with R](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/blob/master/Statistical%20Consulting/Cellulose%20Synthase%20Complex%20Velocity%20Analysis%20in%20Wild%20Type%20and%20mor1.pdf)  
+
 
 
 ##Welcome everyone
