@@ -2,15 +2,14 @@
 
 ##R Practice links
 
-
   
-[ggplot practice-HW02](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw02/Exploring_Gapminder_for_HW2.md) 
+[ggplot practice-HW02](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/Hw02/Exploring_Gapminder_for_HW2.md) 
   
-[ggplot practice with graphs-HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/hw03/hw03-hyeongcheol-park.md)
+[ggplot practice with graphs-HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/hw03/hw03-hyeongcheol-park.md)
   
-[ggplot and join function-HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw04/hw04.md) 
+[ggplot and join function-HW04](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/Hw04/hw04.md) 
   
-[Factor management and etc-HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Hw05/hw05.md)
+[Factor management and etc-HW05](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/Hw05/hw05.md)
   
 [regression, logit, poisson model practice](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Generalized%20Linear%20Model/GLM_A2.pdf)
   
