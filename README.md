@@ -1,8 +1,10 @@
+## ML Practice links: 2018 Winter
 
 
-##R Practice links
 
-  
+
+## R Practice links: 2017 Fall
+
 [ggplot practice-HW02](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/Hw02/Exploring_Gapminder_for_HW2.md) 
   
 [ggplot practice with graphs-HW03](https://github.com/aiod01/STAT545-hw-Hyeongcheol-Park/blob/master/Exploratory%20Data%20Analysis/hw03/hw03-hyeongcheol-park.md)
@@ -22,20 +24,7 @@
 
 
 
-##Welcome everyone
-
-# for assignment!
-
-1. I got the changes by my local computer, using R studio into README.md. I refered the [website](https://raw.githubusercontent.com/STAT545-UBC/STAT545-UBC.github.io/master/hw01_sample_readme.md) to revise this file.
- 
-2. About my GitHub workflow and my experience with Markdown, I read all the explains from stat545 website because I couldn't follow last thursday's lecture. 
-
-3. The explain on the website was easy to follow. I was little bit confused of editing readme at the first time to be honest, but it feels much better now after trying several stuffs by myself.
-
-    - putting image was difficult, in somehow, it didn't work.
-    - it seems that "space" is important, if not, the codes didn't work.
-
-4. R Markdown and exploring gapmider was easy, and fun!
+## Welcome everyone
 
 
 

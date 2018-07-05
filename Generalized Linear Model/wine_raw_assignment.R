@@ -1,7 +1,8 @@
 #read dataset.
-wine <- read.csv(file="/Users/hyeongcheolpark/Library/Mobile Documents/com~apple~CloudDocs/UBC/2017-fall/538A GLM/winequality-red.csv", header=TRUE, sep=";")
+wine <- read.csv(file="/Users/hyeongcheolpark/Library/Mobile Documents/com~apple~CloudDocs/UBC/2017-term1/538A GLM/winequality-red.csv", header=TRUE, sep=";")
 
 # Understand data. Describe how the data is collected and what the data is.
+View(wine)
 head(wine)
 str(wine)
 summary(wine)

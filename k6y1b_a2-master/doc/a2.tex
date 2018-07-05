@@ -1,0 +1,363 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{listings}
+
+
+% Colors
+\definecolor{blu}{rgb}{0,0,1}
+\def\blu#1{{\color{blu}#1}}
+\definecolor{gre}{rgb}{0,.5,0}
+\def\gre#1{{\color{gre}#1}}
+\definecolor{red}{rgb}{1,0,0}
+\def\red#1{{\color{red}#1}}
+\def\norm#1{\|#1\|}
+
+% Math
+\def\R{\mathbb{R}}
+\def\argmax{\mathop{\rm arg\,max}}
+\def\argmin{\mathop{\rm arg\,min}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\alignStar}[1]{\begin{align*}#1\end{align*}}
+\def\half{\frac 1 2}
+
+% LaTeX
+\newcommand{\fig}[2]{\includegraphics[width=#1\textwidth]{#2}}
+\newcommand{\centerfig}[2]{\begin{center}\includegraphics[width=#1\textwidth]{#2}\end{center}}
+\newcommand{\matCode}[1]{\lstinputlisting[language=Matlab]{a2f/#1.m}}
+\def\items#1{\begin{itemize}#1\end{itemize}}
+\def\enum#1{\begin{enumerate}#1\end{enumerate}}
+
+\def\rubric#1{\gre{Rubric: \{#1\}}}{}
+
+\begin{document}
+
+\title{CPSC 340 Assignment 2 (due Friday January 26th at 9:00pm)}
+\author{}
+\date{}
+\maketitle
+\vspace{-4em}
+
+\section{Naive Bayes}
+
+
+
+\subsection{Naive Bayes by Hand}
+\rubric{reasoning:3}
+
+Consider the dataset below, which has $10$ training examples and $2$ features:
+\[
+X = \begin{bmatrix}0 & 1\\1 & 1\\ 0 & 0\\ 1 & 1\\ 1 & 1\\ 0 & 0\\  1 & 0\\  1 & 0\\  1 & 1\\  1 &0\end{bmatrix}, \quad y = \begin{bmatrix}1\\1\\1\\1\\1\\1\\0\\0\\0\\0\end{bmatrix}.
+\]
+Suppose you believe that a naive Bayes model would be appropriate for this dataset, and you want to classify the following test example:
+\[
+\hat{x} = \begin{bmatrix}1 & 0\end{bmatrix}.
+\]
+
+\blu{(a) Compute the estimates of the class prior probabilities} (you don't need to show any work):
+\items{
+\item$ p(y = 1)=\frac{3}{5}$.
+\item $p(y = 0=\frac{2}{5}$.
+}
+
+\blu{(b) Compute the estimates of the 4 conditional probabilities required by naive Bayes for this example}  (you don't need to show any work):
+\items{
+\item $p(x_1 = 1 | y = 1)=\frac{1}{2}$.
+\item $p(x_2 = 0 | y = 1)=\frac{1}{3}$.
+\item $p(x_1 = 1 | y = 0)=1$.
+\item $p(x_2 = 0 | y = 0)=\frac{3}{4}$.
+}
+
+\blu{(c) Under the naive Bayes model and your estimates of the above probabilities, what is the most likely label for the test example? (Show your work.)}
+
+\textbf{Ans: $y=0$ is the most likely.}
+\\Sol: 
+\[p(y=1|x_1=1,x_2=0)
+=\frac{p(x_1=1,x_2=0|y=1)}{p(x_1=1,x_2=0)}
+\propto p(x_1=1|y=1)p(x_2=0|y=1)p(y=1)
+=1/2\times1/3\times3/5=1/10
+\]
+\[p(y=0|x_1=1,x_2=0)
+=\frac{p(x_1=1,x_2=0|y=0)}{p(x_1=1,x_2=0)}
+\propto p(x_1=1|y=0)p(x_2=0|y=0)p(y=0)
+=1\times3/4\times2/5=3/10
+\]
+
+\subsection{Bag of Words}
+\rubric{reasoning:3}
+
+\blu{Answer the following}:
+\enum{
+\item Which word corresponds to column 50 of $X$?
+\\\textbf{colum 50 is  lunar}
+\item Which words are present in training example 500?
+\\\textbf{The words are ['car' 'fact' 'gun' 'video']}
+\item Which newsgroup name does training example 500 come
+\\\textbf{The group name is talk.* }
+}
+
+\subsection{Naive Bayes Implementation}
+\rubric{code:5}
+
+
+\blu{Modify this function so that \texttt{p\_xy} correctly
+computes the conditional probabilities of these values based on the
+frequencies in the data set. Hand in your code and the validation error that you obtain.
+Also, briefly comment on the accuracy as compared to the random forest and scikit-learn's naive Bayes implementation.}
+\\
+\textbf{d = 100\\
+n = 8121\\
+t = 8121\\
+Num classes = 4\\
+Random Forest (sklearn) validation error: 0.202\\
+Naive Bayes (ours) validation error: 0.188\\
+Naive Bayes (sklearn) validation error: 0.187\\
+Naive Bayes validation error is similar to sklearn bayes models. }
+\subsection{Laplace smoothing}
+\rubric{code:1}
+
+\blu{Do the following:}
+\enum{
+\item Modify your code so that it uses Laplace smoothing, with $\beta$
+as a parameter taken in by the constructor.\\
+\url{https://github.ugrad.cs.ubc.ca/CPSC340-2017W-T2/k6y1b\_a2/blob/master/code/naive_bayes.py}
+\item Did you need to modify your fit function, predict function, or both?\\
+\textbf{I need to modify fit function. predict function will be automatically modified once we modify fit function because we predict using fit function.}
+\item Take a look at the documentation for the scikit-learn version of naive Bayes the code is using. How much Laplace smoothing does it use by default? Using the same amount of smoothing with your code, do you get the same results?\\
+\textbf{Default is $\alpha$ = 1. Using $\beta$ = 1 in my Naive, I get the same result as follows.\\
+	d = 100\\
+	n = 8121\\
+	t = 8121\\
+	Num classes = 4\\
+	Random Forest (sklearn) validation error: 0.196\\
+	Naive Bayes (ours) validation error: 0.187\\
+	Naive Bayes (sklearn) validation error: 0.187
+}
+}
+
+
+\subsection{Runtime of Naive Bayes for Discrete Data}
+\rubric{reasoning:3}
+
+ \blu{What is the cost of classifying $t$ test examples with the model?}\\
+\textbf{O(tkd).This is because we need 3 for loops. We should go through t objects, and for each object we go through d features, and for each elements of X matrix we go through k lables to classify.}
+
+
+\section{Random Forests}
+
+\subsection{Implementation}
+\rubric{reasoning:7}
+
+The file \emph{vowels.pkl} contains a supervised learning dataset where we are trying to predict which of the 11 ``steady-state'' English vowels that a speaker is trying to pronounce.
+
+You are provided with a \texttt{RandomStump} class that differs from
+\texttt{DecisionStump} in two ways: it uses the information gain splitting criterion
+(instead of classification accuracy), and
+it only considers $\lfloor \sqrt{d} \rfloor$ randomly-chosen features.\footnote{The notation $\lfloor x\rfloor$ means the ``floor'' of $x$, or ``$x$ rounded down''. You can compute this with \texttt{np.floor(x)} or \texttt{math.floor(x)}.}
+You are also provided with a \texttt{RandomTree} class that is exactly the same as
+\texttt{DecisionTree} except that it uses \texttt{RandomStump} instead of
+\texttt{DecisionStump} and it takes a bootstrap sample of the data before fitting.
+In other words, \texttt{RandomTree} is the entity we discussed in class, which
+makes up a random forest.
+
+If you run \texttt{python main.py -q 2} it will fit a deep \texttt{DecisionTree}
+using the information gain splitting criterion. You will notice that the model overfits badly.
+
+
+
+
+\blu{
+\enum{
+\item Why doesn't the random tree model have a training error of 0?\\
+\textbf{This is because the random tree model is using bootstrap method, and the method is replicating same data. That is, some of the training examples are not included in the bootstrap sample. }
+\item Create a class \texttt{RandomForest} in a file called \texttt{random\string_forest.py} that takes in hyperparameters \texttt{num\string_trees} and \texttt{max\string_depth} and
+fits \texttt{num\string_trees} random trees each with maximum depth \texttt{max\string_depth}. For prediction, have all trees predict and then take the mode.\\
+\url{https://github.ugrad.cs.ubc.ca/CPSC340-2017W-T2/k6y1b_a2/blob/master/code/random_forest.py}
+\item Using 50 trees, and a max depth of $\infty$, report the training and testing error. Compare this to what we got with a single \texttt{DecisionTree} and with a single \texttt{RandomTree}. Are the results what you expected? Discuss.\\
+\textbf{Decision tree info gain\\
+	Training error: 0.000\\
+	Testing error: 0.367\\
+	Random tree info gain\\
+	Training error: 0.163\\
+	Testing error: 0.492\\
+	Random forest info gain\\
+	Training error: 0.000\\
+	Testing error: 0.159\\
+	Training error is 0.000, Testing error is 0.159, which are smallest among the three models. I expected that.
+}
+\item Compare your implementation with scikit-learn's \texttt{RandomForestClassifier} for both speed and accuracy, and briefly discuss. You can use all default hyperparameters if you wish, or you can try changing them.\\
+\textbf{Our implementations:
+  Random forest info gain\\
+Training error: 0.000\\
+Testing error: 0.193\\
+My random forst took 13.747773 seconds\\
+Random forest info gain, more trees\\
+Training error: 0.000\\
+Testing error: 0.174\\
+sikit learn random forst took 0.112223 seconds\\
+So my random forest is slower and has higher testing error.	
+}
+}
+}
+
+\subsection{Very-Short Answer Questions}
+\rubric{reasoning:3}
+
+\blu{\enum{
+\item What is a a disadvantage of using a very-large number of trees in a random forest classifier?\\
+\textbf{It's slow. You may die before you see the result.}
+\item Your random forest classifier has a training error of 0 and a very high test error. Which ones of the following could help performance?
+\enum{
+\item Increase the maximum depth of the trees in your forest.
+\item Decrease the maximum depth of the trees in your forest.
+\item Increase the amout of data you consider for each tree (Collect more data and use $2n$ objects instead of $n$).
+\item Decrease the amount of data you consider for each tree (Use $0.8n$ objects instead of $n$).
+\item Increase the number of features you consider for each tree.
+\item Decrease the number of features you consider for each tree.
+}
+\textbf{(b), (c),(f)}
+\item Suppose that you were training on raw audio segments and trying to recognize vowel sounds. What could you do to encourage the final classifier to be invariant to translation?\\
+\textbf{We should add all of the translated version of data to the training data set. }
+}
+}
+
+\section{Clustering}
+
+
+\subsection{Selecting among $k$-means Initializations}
+\rubric{reasoning:5}
+
+ \blu{\enum{
+ \item In the \emph{kmeans.py} file, add a new function called \emph{error} that takes the same input as the \emph{predict} function but that returns the value of this above objective function. Hand in your code.\\
+ \url{https://github.ugrad.cs.ubc.ca/CPSC340-2017W-T2/k6y1b_a2/blob/master/code/kmeans.py}
+ \item What trend do you observe if you print the value of \emph{error} after each iteration of the $k$-means algorithm?\\
+ \textbf{It is decreasing!!!}
+ \item Using \texttt{plot\_2dclustering}, output the clustering obtained by running $k$-means 50 times (with $k=4$) and taking the one with the lowest error.
+ \centerfig{.5}{../figs/by_chopa.png}
+ \item Looking at the hyperparameters of scikit-learn's \texttt{KMeans}, explain the first four (\texttt{n\_clusters}, \texttt{init}, \texttt{n\_init}, \texttt{max\_iter}) very briefly.\\
+\textbf{n\_clusters=8, the number of clusters to form\\init : methods to choose initial points of means, either randomly and faster version(k-means++) {‘k-means++’, ‘random’ or an ndarray}\\n\_init : int number of times that Kmeans algorithm will run, default: 10\\max\_iter : maximum number of interations in a single run of Kmeans. int, default: 300}
+}}
+
+
+ \subsection{Selecting $k$ in $k$-means}
+\rubric{reasoning:5}
+
+ We now turn to the task of choosing the number of clusters $k$.
+
+ \blu{\enum{
+ \item Explain why the \emph{error} function should not be used to choose $k$.\\
+ \textbf{When k is larger, the error will be smaller. So this way will make K only bigger and bigger.}\\
+ \item Explain why even evaluating the \emph{error} function on test data still wouldn't be a suitable approach to choosing $k$.
+ \textbf{Same reason. Even if this is the test data set, if k is a lot, then the evaluated error will be small. }
+ \item Hand in a plot of the minimum error found across 50 random initializations, as a function of $k$, taking $k$ from $1$ to $10$.\\
+  \centerfig{.5}{../figs/k_elbow.png}
+ \item The \emph{elbow method} for choosing $k$ consists of looking at the above plot and visually trying to choose the $k$ that makes the sharpest ``elbow" (the biggest change in slope). What values of $k$ might be reasonable according to this method? \\
+ \textbf{I would choose 3.}
+ }}
+
+ \subsection{$k$-medians}
+\rubric{reasoning:5}
+
+ The data in \emph{clusterData2.pkl} is the exact same as the above data, except it has 4 outliers that are very far away from the data.
+
+ \blu{\enum{
+ \item Using the \texttt{plot\_2dclustering} function, output the clustering obtained by running $k$-means 50 times (with $k=4$)  and taking the one with the lowest error. Are you satisfied with the result?\\
+ \textbf{NO!!}
+   \centerfig{.5}{../figs/q3_3.png}
+ \item What values of $k$ might be chosen by the elbow method for this dataset?\\\textbf{Seems to choose 8}
+    \centerfig{.5}{../figs/k_elbow_3_3_3.png}
+ \item Implement the $k$-\emph{medians} algorithm, which assigns examples to the nearest $w_c$ in the L1-norm and to updates the $w_c$ by setting them to the ``median" of the points assigned to the cluster (we define the $d$-dimensional median as the concatenation of the median of the points along each dimension). Hand in your code and plot obtained with 50 random initializations for $k = 4$.\\
+   \centerfig{.5}{../figs/q3_3_3.png}
+\item Using the L1-norm version of the error (where $y_i$ now represents the closest median in the L1-norm),
+\[
+f(w_1,w_2,\dots,w_k,y_1,y_2,\dots,y_n) = \sum_{i=1}^n \norm{x_i - w_{y_i}}_1 = \sum_{i=1}^n \sum_{j=1}^d |x_{ij} - w_{y_ij}|,
+\]
+what value of $k$ would be chosen by the elbow method under this strategy? Are you satisfied with this result?\\\textbf{k can be 4. I am fine for that.}
+   \centerfig{.5}{../figs/k_elbow_3_3_4.png}
+}
+}
+
+\subsection{Density-Based Clustering}
+\rubric{reasoning:2}
+
+If you run \texttt{python main.py -q 3.4},
+it will apply the basic density-based clustering algorithm to the dataset from the previous part.
+The final output should look somewhat like this:\\
+\fig{.49}{../figs/density}\fig{.49}{../figs/density2}\\
+(The right plot is zoomed in to show the non-outlier part of the data.)
+Even though we know that each object was generated from one of four clusters (and we have 4 outliers),
+ the algorithm finds 6 clusters and does not assign some of the original non-outlier
+  objects to any cluster. However, the clusters will change if we change the parameters
+  of the algorithm. Find and report values for the two
+  parameters, \texttt{eps} (which we called the ``radius'' in class) and \texttt{minPts},
+   such that the density-based clustering method finds:
+\blu{\enum{
+\item The 4 ``true" clusters.\\
+eps=2 minsamples=3
+\item 3 clusters (merging the top two, which also seems like a reasonable interpretaition).\\
+eps=4 minsamples=3
+\item 2 clusters.\\
+eps=13 minsamples=3
+\item 1 cluster (consisting of the non-outlier points).\\
+eps=16 minsamples=3
+}
+}
+
+
+\subsection{Very-Short Answer Questions}
+\rubric{reasoning:3}
+
+\blu{
+\enum{
+\item Does the standard $k$-means clustering algorithm always yield the optimal clustering solution for a given $k$?\\\textbf{No. The initialization dominates this method. And it can converge to sub-optimal solution too.}\\
+\item If your set out to minimize the distance between each point and its mean in a $k$-means clustering, what value of $k$ minimizes this cost? Is this value useful?\\
+\textbf{If your k goes larger and larger till k gets n, then it is totally useless and it totally minimizes the cost.But USELESS}\\
+\item Describe a dataset with $k$ clusters where $k$-means would not be able to find the true clusters.\\
+\textbf{If  true clusters are non-convex, and if the clusters are so close to each other, then k means will not be appropriate.}\\
+\item Suppose that you had only two features and that they have very-different scales (like kilograms vs. milligrams). How would this affect the result of density-based clustering?\\
+\textbf{If the radius is set to be small, then it might only detect the cluster with small scales(more concentrated points.)If the radius is too large, then all points would be  classified as one cluster.}
+\item Name a key advantage and drawback of using a supervised outlier detection method rather than an unsupervised method?\\
+\textbf{You can detect outliers that are very-close to normal points, but you may not be able to detect abnormal outliers such as points which are very far away from clustered points}
+}}
+
+
+
+\section{Vector Quantization}
+\rubric{reasoning:6}
+
+Discovering object groups is one motivation for clustering. Another motivation is \emph{vector quantization}, where we find a prototype point for each cluster and replace points in the cluster by their prototype. If our inputs are images, vector quantization gives us a rudimentary image compression algorithm.
+
+Your task is to implement image quantization in \emph{quantize\_image.py} with \texttt{quantize} and \texttt{dequantize} functions. The \texttt{quantize} function should take in an image and, using the pixels as examples and the 3 colour channels as features, run $k$-means clustering on the data with $2^b$ clusters for some hyperparameter $b$. The code should store the cluster means and return the cluster assignments. The \texttt{dequantize} function should return a version of the image (the same size as the original) where each pixel's orignal colour is replaced with the nearest prototype colour.
+
+To understand why this is compression, consider the original image space. Say the image can take on the values $0,1,\ldots,254,255$ in each colour channel. Since $2^8=256$ this means we need 8 bits to represent each colour channel, for a total of 24 bits per pixel. Using our method, we are restricting each pixel to only take on one of $2^b$ colour values. In other words, we are compressing each pixel from a 24-bit colour representation to a $b$-bit colour representation by picking the $2^b$ prototype colours that are ``most representative'' given the content of the image. So, for example, if $b=6$ then we have 4x compression.
+
+The loaded image contains a 3D-array representing the RGB values of a picture.
+\blu{Implement the \emph{quantize} and \emph{dequantize} functions and show the image
+obtained if you encode the colours using $1$, $2$, $4$, and $6$ bits with the provided image.}
+You are welcome to use the provided implementation of $k$-means or the scikit-learn version.
+
+
+\blu{\enum{
+\item Hand in your \emph{quantizeImage} and \emph{deQuantizeImage} functions.
+\item Show the image obtained if you encode the colours using $1$, $2$, $4$, and $6$ bits per pixel (instead of the original 24-bits).\\
+\textbf{for 1}\\
+\fig{.49}{../figs/b_1_image.png}\\
+\textbf{for 2}\\
+\fig{.49}{../figs/b_2_image.png}\\
+\textbf{for 4}\\
+\fig{.49}{../figs/b_4_image.png}\\
+\textbf{for 6}\\
+\fig{.49}{../figs/b_6_image.png}\\
+\item Briefly comment on the prototype colours learned in case each, which are saved by the code.\\
+\textbf{The dominant color is the first two colors that we got, and then the prototype colors are getting colorfull detailing the picture.}
+}}
+
+\end{document}
