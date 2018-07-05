@@ -1,7 +1,16 @@
 ## ML Practice links: 2018 Winter
 
+[Decision tree, KNN](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a1-master)
 
+[K means, Naive Bases, Random forest](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a2-master)
 
+[Linear model](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a3-master)
+
+[Linear model2](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a4-master)
+
+[PCA](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a5-master)
+
+[General Process](https://github.com/aiod01/R-Projects-Hyeongcheol-Park/tree/master/k6y1b_a6-master)
 
 ## R Practice links: 2017 Fall
 
